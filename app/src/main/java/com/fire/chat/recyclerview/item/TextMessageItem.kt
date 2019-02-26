@@ -1,8 +1,8 @@
-package com.resocoder.firemessage.recyclerview.item
+package com.fire.chat.recyclerview.item
 
 import android.content.Context
-import com.resocoder.firemessage.R
-import com.resocoder.firemessage.model.TextMessage
+import com.fire.chat.R
+import com.fire.chat.model.TextMessage
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.item_text_message.*
 

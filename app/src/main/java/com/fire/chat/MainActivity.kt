@@ -1,12 +1,9 @@
-package com.resocoder.firemessage
+package com.fire.chat
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
-import com.resocoder.firemessage.fragment.MyAccountFragment
-import com.resocoder.firemessage.fragment.PeopleFragment
+import com.fire.chat.fragment.MyAccountFragment
+import com.fire.chat.fragment.PeopleFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

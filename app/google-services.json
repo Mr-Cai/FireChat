@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "277485433091",
-    "firebase_url": "https://firemessage-db177.firebaseio.com",
-    "project_id": "firemessage-db177",
-    "storage_bucket": "firemessage-db177.appspot.com"
+    "project_number": "85658357065",
+    "firebase_url": "https://fire-chat2019.firebaseio.com",
+    "project_id": "fire-chat2019",
+    "storage_bucket": "fire-chat2019.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:277485433091:android:ba89bfa487b92988",
+        "mobilesdk_app_id": "1:85658357065:android:7f5b3f8edab49d22",
         "android_client_info": {
-          "package_name": "com.resocoder.firemessage"
+          "package_name": "com.fire.chat"
         }
       },
       "oauth_client": [
         {
-          "client_id": "277485433091-ijnbcps9nv94spj9p1sk153774rt4432.apps.googleusercontent.com",
+          "client_id": "85658357065-q5m5siv7fr6d40icm730ure6is2lgk11.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBx9HueAK6SYyaxXDKULgpecQJuMFTNivM"
+          "current_key": "AIzaSyD_r7YDFck2c2lAPmdfCTlSgLU6zqFYxt0"
         }
       ],
       "services": {

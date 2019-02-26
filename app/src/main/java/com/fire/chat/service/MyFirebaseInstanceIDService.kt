@@ -1,9 +1,9 @@
-package com.resocoder.firemessage.service
+package com.fire.chat.service
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.FirebaseInstanceIdService
-import com.resocoder.firemessage.util.FirestoreUtil
+import com.fire.chat.util.FirestoreUtil
 
 
 class MyFirebaseInstanceIDService : FirebaseInstanceIdService() {

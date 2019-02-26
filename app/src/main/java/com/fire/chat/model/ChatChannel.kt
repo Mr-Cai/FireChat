@@ -1,4 +1,4 @@
-package com.resocoder.firemessage.model
+package com.fire.chat.model
 
 
 data class ChatChannel(val userIds: MutableList<String>) {

@@ -1,4 +1,4 @@
-package com.resocoder.firemessage
+package com.fire.chat
 
 
 object AppConstants {

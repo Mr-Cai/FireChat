@@ -1,4 +1,4 @@
-package com.resocoder.firemessage.util
+package com.fire.chat.util
 
 import android.content.Context
 import android.util.Log
@@ -6,10 +6,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
-import com.resocoder.firemessage.model.*
-import com.resocoder.firemessage.recyclerview.item.ImageMessageItem
-import com.resocoder.firemessage.recyclerview.item.PersonItem
-import com.resocoder.firemessage.recyclerview.item.TextMessageItem
+import com.fire.chat.model.*
+import com.fire.chat.recyclerview.item.ImageMessageItem
+import com.fire.chat.recyclerview.item.PersonItem
+import com.fire.chat.recyclerview.item.TextMessageItem
 import com.xwray.groupie.kotlinandroidextensions.Item
 
 

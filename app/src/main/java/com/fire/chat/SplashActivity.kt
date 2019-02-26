@@ -1,4 +1,4 @@
-package com.resocoder.firemessage
+package com.fire.chat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

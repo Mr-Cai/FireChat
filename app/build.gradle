@@ -9,7 +9,7 @@ android {
     }
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.resocoder.firemessage"
+        applicationId "com.fire.chat"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1

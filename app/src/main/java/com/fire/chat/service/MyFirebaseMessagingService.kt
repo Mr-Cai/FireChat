@@ -1,4 +1,4 @@
-package com.resocoder.firemessage.service
+package com.fire.chat.service
 
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService

@@ -1,10 +1,10 @@
-package com.resocoder.firemessage.recyclerview.item
+package com.fire.chat.recyclerview.item
 
 import android.view.Gravity
 import android.widget.FrameLayout
 import com.google.firebase.auth.FirebaseAuth
-import com.resocoder.firemessage.R
-import com.resocoder.firemessage.model.Message
+import com.fire.chat.R
+import com.fire.chat.model.Message
 import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.item_text_message.*

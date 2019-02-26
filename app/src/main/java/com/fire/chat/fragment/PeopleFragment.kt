@@ -1,19 +1,18 @@
-package com.resocoder.firemessage.fragment
+package com.fire.chat.fragment
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.firestore.ListenerRegistration
-import com.resocoder.firemessage.AppConstants
-import com.resocoder.firemessage.ChatActivity
+import com.fire.chat.AppConstants
+import com.fire.chat.ChatActivity
 
-import com.resocoder.firemessage.R
-import com.resocoder.firemessage.recyclerview.item.PersonItem
-import com.resocoder.firemessage.util.FirestoreUtil
+import com.fire.chat.R
+import com.fire.chat.recyclerview.item.PersonItem
+import com.fire.chat.util.FirestoreUtil
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.Section

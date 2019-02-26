@@ -1,4 +1,4 @@
-package com.resocoder.firemessage.glide
+package com.fire.chat.glide
 
 import android.content.Context
 import com.bumptech.glide.Glide

@@ -1,10 +1,10 @@
-package com.resocoder.firemessage.recyclerview.item
+package com.fire.chat.recyclerview.item
 
 import android.content.Context
-import com.resocoder.firemessage.R
-import com.resocoder.firemessage.glide.GlideApp
-import com.resocoder.firemessage.model.ImageMessage
-import com.resocoder.firemessage.util.StorageUtil
+import com.fire.chat.R
+import com.fire.chat.glide.GlideApp
+import com.fire.chat.model.ImageMessage
+import com.fire.chat.util.StorageUtil
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.item_image_message.*
 

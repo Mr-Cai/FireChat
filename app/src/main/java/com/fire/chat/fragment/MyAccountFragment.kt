@@ -1,4 +1,4 @@
-package com.resocoder.firemessage.fragment
+package com.fire.chat.fragment
 
 
 import android.app.Activity
@@ -6,17 +6,16 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.firebase.ui.auth.AuthUI
 
-import com.resocoder.firemessage.R
-import com.resocoder.firemessage.SignInActivity
-import com.resocoder.firemessage.glide.GlideApp
-import com.resocoder.firemessage.util.FirestoreUtil
-import com.resocoder.firemessage.util.StorageUtil
+import com.fire.chat.R
+import com.fire.chat.SignInActivity
+import com.fire.chat.glide.GlideApp
+import com.fire.chat.util.FirestoreUtil
+import com.fire.chat.util.StorageUtil
 import kotlinx.android.synthetic.main.fragment_my_account.*
 import kotlinx.android.synthetic.main.fragment_my_account.view.*
 import org.jetbrains.anko.clearTask
