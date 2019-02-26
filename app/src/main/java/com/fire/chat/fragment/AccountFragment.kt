@@ -9,11 +9,13 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.firebase.ui.auth.AuthUI
 
 import com.fire.chat.R
 import com.fire.chat.SignInActivity
 import com.fire.chat.glide.GlideApp
+import com.fire.chat.util.Constant.RC_SELECT_IMAGE
 import com.fire.chat.util.FirestoreUtil
 import com.fire.chat.util.StorageUtil
 import kotlinx.android.synthetic.main.fragment_my_account.*
@@ -25,9 +27,8 @@ import org.jetbrains.anko.support.v4.toast
 import java.io.ByteArrayOutputStream
 
 
-class MyAccountFragment : androidx.fragment.app.Fragment() {
+class AccountFragment : Fragment() {
 
-    private val RC_SELECT_IMAGE = 2
     private lateinit var selectedImageBytes: ByteArray
     private var pictureJustChanged = false
 
@@ -59,7 +60,7 @@ class MyAccountFragment : androidx.fragment.app.Fragment() {
 
             btn_sign_out.setOnClickListener {
                 AuthUI.getInstance()
-                        .signOut(this@MyAccountFragment.context!!)
+                        .signOut(this@AccountFragment.context!!)
                         .addOnCompleteListener {
                             startActivity(intentFor<SignInActivity>().newTask().clearTask())
                         }
@@ -91,7 +92,7 @@ class MyAccountFragment : androidx.fragment.app.Fragment() {
     override fun onStart() {
         super.onStart()
         FirestoreUtil.getCurrentUser { user ->
-            if (this@MyAccountFragment.isVisible) {
+            if (this@AccountFragment.isVisible) {
                 editText_name.setText(user.name)
                 editText_bio.setText(user.bio)
                 if (!pictureJustChanged && user.profilePicturePath != null)

@@ -2,7 +2,7 @@ package com.fire.chat
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.fire.chat.fragment.MyAccountFragment
+import com.fire.chat.fragment.AccountFragment
 import com.fire.chat.fragment.PeopleFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_my_account -> {
-                    replaceFragment(MyAccountFragment())
+                    replaceFragment(AccountFragment())
                     true
                 }
                 else -> false

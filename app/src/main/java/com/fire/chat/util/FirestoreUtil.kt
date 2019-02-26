@@ -111,7 +111,7 @@ object FirestoreUtil {
 
                     val items = mutableListOf<Item>()
                     querySnapshot!!.documents.forEach {
-                        if (it["type"] == MessageType.TEXT)
+                        if (it["type"] == Constant.TEXT)
                             items.add(TextMessageItem(it.toObject(TextMessage::class.java)!!, context))
                         else
                             items.add(ImageMessageItem(it.toObject(ImageMessage::class.java)!!, context))

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fire.chat.fragment.MyAccountFragment">
+    tools:context="com.fire.chat.fragment.AccountFragment">
 
     <ImageView
         android:id="@+id/imageView_profile_picture"

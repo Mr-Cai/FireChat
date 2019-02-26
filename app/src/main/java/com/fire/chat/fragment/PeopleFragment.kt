@@ -2,17 +2,17 @@ package com.fire.chat.fragment
 
 
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.firebase.firestore.ListenerRegistration
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.fire.chat.AppConstants
 import com.fire.chat.ChatActivity
-
 import com.fire.chat.R
 import com.fire.chat.recyclerview.item.PersonItem
 import com.fire.chat.util.FirestoreUtil
+import com.google.firebase.firestore.ListenerRegistration
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.Section
@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_people.*
 import org.jetbrains.anko.support.v4.startActivity
 
 
-class PeopleFragment : androidx.fragment.app.Fragment() {
+class PeopleFragment : Fragment() {
 
     private lateinit var userListenerRegistration: ListenerRegistration
 
@@ -68,7 +68,7 @@ class PeopleFragment : androidx.fragment.app.Fragment() {
 
     }
 
-    private val onItemClick = OnItemClickListener { item, view ->
+    private val onItemClick = OnItemClickListener { item, _ ->
         if (item is PersonItem) {
             startActivity<ChatActivity>(
                     AppConstants.USER_NAME to item.person.name,
