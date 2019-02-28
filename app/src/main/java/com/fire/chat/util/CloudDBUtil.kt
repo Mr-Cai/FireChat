@@ -2,25 +2,26 @@ package com.fire.chat.util
 
 import android.content.Context
 import android.util.Log
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ListenerRegistration
+import com.fire.chat.AppConstants
 import com.fire.chat.model.*
 import com.fire.chat.recyclerview.item.ImageMessageItem
 import com.fire.chat.recyclerview.item.PersonItem
 import com.fire.chat.recyclerview.item.TextMessageItem
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import com.xwray.groupie.kotlinandroidextensions.Item
 
 
-object FirestoreUtil {
-    private val firestoreInstance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
+object CloudDBUtil {
+    private val instance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
 
     private val currentUserDocRef: DocumentReference
-        get() = firestoreInstance.document("users/${FirebaseAuth.getInstance().currentUser?.uid
+        get() = instance.document("users/${FirebaseAuth.getInstance().currentUser?.uid
                 ?: throw NullPointerException("UID is null.")}")
 
-    private val chatChannelsCollectionRef = firestoreInstance.collection("chatChannels")
+    private val chatChannelsCollectionRef = instance.collection("chatChannels")
 
     fun initCurrentUserIfFirstTime(onComplete: () -> Unit) {
         currentUserDocRef.get().addOnSuccessListener { documentSnapshot ->
@@ -30,8 +31,7 @@ object FirestoreUtil {
                 currentUserDocRef.set(newUser).addOnSuccessListener {
                     onComplete()
                 }
-            }
-            else
+            } else
                 onComplete()
         }
     }
@@ -53,10 +53,10 @@ object FirestoreUtil {
     }
 
     fun addUsersListener(context: Context, onListen: (List<Item>) -> Unit): ListenerRegistration {
-        return firestoreInstance.collection("users")
-                .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
-                    if (firebaseFirestoreException != null) {
-                        Log.e("FIRESTORE", "Users listener error.", firebaseFirestoreException)
+        return instance.collection("users")
+                .addSnapshotListener { querySnapshot, exception ->
+                    if (exception != null) {
+                        Log.e("云数据库", "Users listener error.", exception)
                         return@addSnapshotListener
                     }
 
@@ -90,7 +90,7 @@ object FirestoreUtil {
                             .document(otherUserId)
                             .set(mapOf("channelId" to newChannel.id))
 
-                    firestoreInstance.collection("users").document(otherUserId)
+                    instance.collection("users").document(otherUserId)
                             .collection("engagedChatChannels")
                             .document(currentUserId)
                             .set(mapOf("channelId" to newChannel.id))
@@ -103,15 +103,15 @@ object FirestoreUtil {
                                 onListen: (List<Item>) -> Unit): ListenerRegistration {
         return chatChannelsCollectionRef.document(channelId).collection("messages")
                 .orderBy("time")
-                .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
-                    if (firebaseFirestoreException != null) {
-                        Log.e("FIRESTORE", "ChatMessagesListener error.", firebaseFirestoreException)
+                .addSnapshotListener { querySnapshot, exception ->
+                    if (exception != null) {
+                        Log.e("云数据库", "聊天消息监听出现错误", exception)
                         return@addSnapshotListener
                     }
 
                     val items = mutableListOf<Item>()
                     querySnapshot!!.documents.forEach {
-                        if (it["type"] == Constant.TEXT)
+                        if (it["type"] == AppConstants.TEXT)
                             items.add(TextMessageItem(it.toObject(TextMessage::class.java)!!, context))
                         else
                             items.add(ImageMessageItem(it.toObject(ImageMessage::class.java)!!, context))
@@ -127,7 +127,7 @@ object FirestoreUtil {
                 .add(message)
     }
 
-    //region FCM
+    // 消息推送--开始
     fun getFCMRegistrationTokens(onComplete: (tokens: MutableList<String>) -> Unit) {
         currentUserDocRef.get().addOnSuccessListener {
             val user = it.toObject(User::class.java)!!
@@ -138,5 +138,5 @@ object FirestoreUtil {
     fun setFCMRegistrationTokens(registrationTokens: MutableList<String>) {
         currentUserDocRef.update(mapOf("registrationTokens" to registrationTokens))
     }
-    //endregion FCM
+    //  消息推送--结束
 }

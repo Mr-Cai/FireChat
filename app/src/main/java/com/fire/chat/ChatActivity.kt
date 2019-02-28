@@ -12,7 +12,7 @@ import com.google.firebase.firestore.ListenerRegistration
 import com.fire.chat.model.ImageMessage
 import com.fire.chat.model.TextMessage
 import com.fire.chat.model.User
-import com.fire.chat.util.FirestoreUtil
+import com.fire.chat.util.CloudDBUtil
 import com.fire.chat.util.StorageUtil
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
@@ -41,16 +41,16 @@ class ChatActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = intent.getStringExtra(AppConstants.USER_NAME)
 
-        FirestoreUtil.getCurrentUser {
+        CloudDBUtil.getCurrentUser {
             currentUser = it
         }
 
         otherUserId = intent.getStringExtra(AppConstants.USER_ID)
-        FirestoreUtil.getOrCreateChatChannel(otherUserId) { channelId ->
+        CloudDBUtil.getOrCreateChatChannel(otherUserId) { channelId ->
             currentChannelId = channelId
 
             messagesListenerRegistration =
-                    FirestoreUtil.addChatMessagesListener(channelId, this, this::updateRecyclerView)
+                    CloudDBUtil.addChatMessagesListener(channelId, this, this::updateRecyclerView)
 
             imageView_send.setOnClickListener {
                 val messageToSend =
@@ -58,7 +58,7 @@ class ChatActivity : AppCompatActivity() {
                                 FirebaseAuth.getInstance().currentUser!!.uid,
                                 otherUserId, currentUser.name)
                 editText_message.setText("")
-                FirestoreUtil.sendMessage(messageToSend, channelId)
+                CloudDBUtil.sendMessage(messageToSend, channelId)
             }
 
             fab_send_image.setOnClickListener {
@@ -89,7 +89,7 @@ class ChatActivity : AppCompatActivity() {
                         ImageMessage(imagePath, Calendar.getInstance().time,
                                 FirebaseAuth.getInstance().currentUser!!.uid,
                                 otherUserId, currentUser.name)
-                FirestoreUtil.sendMessage(messageToSend, currentChannelId)
+                CloudDBUtil.sendMessage(messageToSend, currentChannelId)
             }
         }
     }

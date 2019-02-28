@@ -2,14 +2,14 @@ package com.fire.chat
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.fire.chat.service.CloudMessaging
+import com.fire.chat.util.CloudDBUtil
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.iid.FirebaseInstanceId
-import com.fire.chat.util.FirestoreUtil
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.design.longSnackbar
@@ -48,21 +48,17 @@ class SignInActivity : AppCompatActivity() {
 
             if (resultCode == Activity.RESULT_OK) {
                 val progressDialog = indeterminateProgressDialog("Setting up your account")
-                FirestoreUtil.initCurrentUserIfFirstTime {
+                CloudDBUtil.initCurrentUserIfFirstTime {
                     startActivity(intentFor<MainActivity>().newTask().clearTask())
-
                     val registrationToken = FirebaseInstanceId.getInstance().token
                     CloudMessaging.addTokenToCloud(registrationToken)
-
                     progressDialog.dismiss()
                 }
-            }
-            else if (resultCode == Activity.RESULT_CANCELED) {
+            } else if (resultCode == Activity.RESULT_CANCELED) {
                 if (response == null) return
-
                 when (response.error?.errorCode) {
                     ErrorCodes.NO_NETWORK ->
-                            longSnackbar(constraint_layout, "No network")
+                        longSnackbar(constraint_layout, "No network")
                     ErrorCodes.UNKNOWN_ERROR ->
                         longSnackbar(constraint_layout, "Unknown error")
                 }

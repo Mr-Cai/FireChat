@@ -10,14 +10,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.firebase.ui.auth.AuthUI
-
+import com.fire.chat.AppConstants.RC_SELECT_IMAGE
 import com.fire.chat.R
 import com.fire.chat.SignInActivity
 import com.fire.chat.glide.GlideApp
-import com.fire.chat.util.Constant.RC_SELECT_IMAGE
-import com.fire.chat.util.FirestoreUtil
+import com.fire.chat.util.CloudDBUtil
 import com.fire.chat.util.StorageUtil
+import com.firebase.ui.auth.AuthUI
 import kotlinx.android.synthetic.main.fragment_my_account.*
 import kotlinx.android.synthetic.main.fragment_my_account.view.*
 import org.jetbrains.anko.clearTask
@@ -49,11 +48,11 @@ class AccountFragment : Fragment() {
             btn_save.setOnClickListener {
                 if (::selectedImageBytes.isInitialized)
                     StorageUtil.uploadProfilePhoto(selectedImageBytes) { imagePath ->
-                        FirestoreUtil.updateCurrentUser(editText_name.text.toString(),
+                        CloudDBUtil.updateCurrentUser(editText_name.text.toString(),
                                 editText_bio.text.toString(), imagePath)
                     }
                 else
-                    FirestoreUtil.updateCurrentUser(editText_name.text.toString(),
+                    CloudDBUtil.updateCurrentUser(editText_name.text.toString(),
                             editText_bio.text.toString(), null)
                 toast("Saving")
             }
@@ -91,7 +90,7 @@ class AccountFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        FirestoreUtil.getCurrentUser { user ->
+        CloudDBUtil.getCurrentUser { user ->
             if (this@AccountFragment.isVisible) {
                 editText_name.setText(user.name)
                 editText_bio.setText(user.bio)

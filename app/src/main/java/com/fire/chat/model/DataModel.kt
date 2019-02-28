@@ -2,7 +2,7 @@
 
 package com.fire.chat.model
 
-import com.fire.chat.util.Constant
+import com.fire.chat.AppConstants
 import java.util.*
 
 
@@ -15,7 +15,7 @@ data class ImageMessage(val imagePath: String,
                         override val senderId: String,
                         override val recipientId: String,
                         override val senderName: String,
-                        override val type: String = Constant.IMAGE)
+                        override val type: String = AppConstants.IMAGE)
     : Message {
     constructor() : this("", Date(0), "", "", "")
 }
@@ -25,7 +25,7 @@ data class TextMessage(val text: String,
                        override val senderId: String,
                        override val recipientId: String,
                        override val senderName: String,
-                       override val type: String = Constant.TEXT)
+                       override val type: String = AppConstants.TEXT)
     : Message {
     constructor() : this("", Date(0), "", "", "")
 }

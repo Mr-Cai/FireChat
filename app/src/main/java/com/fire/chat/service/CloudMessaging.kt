@@ -1,7 +1,7 @@
 package com.fire.chat.service
 
 import android.util.Log
-import com.fire.chat.util.FirestoreUtil
+import com.fire.chat.util.CloudDBUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -23,11 +23,11 @@ class CloudMessaging : FirebaseMessagingService() {
     companion object {
         fun addTokenToCloud(newRegistrationToken: String?) {
             if (newRegistrationToken == null) throw NullPointerException("FCM token is null.")
-            FirestoreUtil.getFCMRegistrationTokens { tokens ->
+            CloudDBUtil.getFCMRegistrationTokens { tokens ->
                 if (tokens.contains(newRegistrationToken))
                     return@getFCMRegistrationTokens
                 tokens.add(newRegistrationToken)
-                FirestoreUtil.setFCMRegistrationTokens(tokens)
+                CloudDBUtil.setFCMRegistrationTokens(tokens)
             }
         }
     }

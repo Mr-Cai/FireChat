@@ -2,9 +2,9 @@ package com.fire.chat.recyclerview.item
 
 import android.view.Gravity
 import android.widget.FrameLayout
-import com.google.firebase.auth.FirebaseAuth
 import com.fire.chat.R
 import com.fire.chat.model.Message
+import com.google.firebase.auth.FirebaseAuth
 import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.item_text_message.*
@@ -34,8 +34,7 @@ abstract class MessageItem(private val message: Message)
                 val lParams = FrameLayout.LayoutParams(wrapContent, wrapContent, Gravity.END)
                 this.layoutParams = lParams
             }
-        }
-        else {
+        } else {
             viewHolder.message_root.apply {
                 backgroundResource = R.drawable.rect_round_primary_color
                 val lParams = FrameLayout.LayoutParams(wrapContent, wrapContent, Gravity.START)
